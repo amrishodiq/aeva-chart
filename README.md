@@ -46,7 +46,7 @@ You can customize the chart background using the `chart-background` attribute:
 
 **2. Solid Color**
 ```html
-<aeva-chart chart-background="rgba(0, 255, 0, 0.2)"></aeva-chart>
+<aeva-chart chart-background="orange"></aeva-chart>
 ```
 
 **3. Gradient Background**
@@ -61,11 +61,12 @@ Provide multiple colors separated by commas to create a vertical gradient.
    ```bash
    npm install
    ```
-2. Run dev mode (watch):
-   ```bash
-   npm run dev
-   ```
 3. Build:
    ```bash
    npm run build
+   ```
+
+4. Run dev mode (watch):
+   ```bash
+   npm run dev
    ```
