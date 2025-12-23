@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import Chart from 'chart.js/auto';
+import { getChartBackground } from './utils/canvas-utils';
 @customElement('aeva-chart')
 export class AevaChart extends LitElement {
     @property({ type: String }) type = 'line';
@@ -35,41 +36,15 @@ export class AevaChart extends LitElement {
         const ctx = this.canvas.getContext('2d');
         if (!ctx) return;
 
-        // Parse colors from property (comma separated)
-        const colors = this.chartBackground ? this.chartBackground.split(',').map(c => c.trim()).filter(c => c) : [];
-
-        let fillValue: boolean | string = false;
-        let bgValue: string | CanvasGradient = 'rgba(0,0,0,0)';
-
-        if (colors.length === 0) {
-            // No background
-            fillValue = false;
-        } else if (colors.length === 1) {
-            // Single color
-            fillValue = true;
-            bgValue = colors[0];
-        } else {
-            // Gradient
-            fillValue = true;
-            // Create vertical gradient
-            // We can approximate height or try to get it from canvas. 
-            // 400 is a safe default for typical charts, or we can use chart area after layout (more complex)
-            // For simplicity in this scaffold:
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-
-            // Distribute colors evenly
-            colors.forEach((color, index) => {
-                const stop = index / (colors.length - 1);
-                gradient.addColorStop(stop, color);
-            });
-            bgValue = gradient;
-        }
+        const { fill, backgroundColor } = getChartBackground(ctx, {
+            colorsString: this.chartBackground
+        });
 
         // Apply styles to datasets
         const datasets = this.data.datasets?.map((dataset: any) => ({
             ...dataset,
-            fill: fillValue,
-            backgroundColor: bgValue,
+            fill: fill,
+            backgroundColor: backgroundColor,
             // Keep previous defaults if not overriding
             borderColor: dataset.borderColor || 'orange',
             tension: dataset.tension || 0.4,

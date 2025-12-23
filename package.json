@@ -16,6 +16,9 @@
     "web-components",
     "typescript"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "",
   "license": "ISC",
   "peerDependencies": {
