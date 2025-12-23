@@ -1,0 +1,31 @@
+{
+  "name": "aeva-chart",
+  "version": "0.1.0",
+  "description": "Chart library for web and mobile using LitElement and Chart.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "chart",
+    "lit",
+    "web-components",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "chart.js": "^4.0.0",
+    "lit": "^3.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "chart.js": "^4.0.0",
+    "lit": "^3.0.0"
+  }
+}

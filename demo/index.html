@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeva Chart Demo</title>
+    <!-- Import the bundled module which includes Lit and Chart.js -->
+    <script type="module">
+        import '../dist/index.bundle.mjs';
+    </script>
+</head>
+
+<body>
+    <h1>Aeva Chart Demo</h1>
+
+    <h2>1. No Background (Default)</h2>
+    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
+        <aeva-chart id="chart-none"></aeva-chart>
+    </div>
+
+    <h2>2. Single Color Background</h2>
+    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
+        <aeva-chart id="chart-solid" chart-background="orange"></aeva-chart>
+    </div>
+
+    <h2>3. Gradient Background (Orange -> White)</h2>
+    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
+        <!-- Passing multiple colors comma separated -->
+        <aeva-chart id="chart-gradient" chart-background="orange, white"></aeva-chart>
+    </div>
+
+    <script>
+        const commonData = {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 2
+            }]
+        };
+
+        // Initialize all charts
+        document.querySelectorAll('aeva-chart').forEach(chart => {
+            // Need to clone data to avoid reference sharing issues between Chart.js instances if they mutate it
+            chart.data = JSON.parse(JSON.stringify(commonData));
+        });
+    </script>
+</body>
+
+</html>
