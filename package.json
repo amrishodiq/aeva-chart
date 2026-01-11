@@ -26,9 +26,12 @@
     "lit": "^3.0.0"
   },
   "devDependencies": {
-    "tsup": "^8.0.0",
-    "typescript": "^5.0.0",
     "chart.js": "^4.0.0",
-    "lit": "^3.0.0"
+    "lit": "^3.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "chartjs-plugin-datalabels": "^2.2.0"
   }
 }

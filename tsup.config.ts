@@ -18,6 +18,6 @@ export default defineConfig([
         format: ['esm'],
         sourcemap: true,
         outDir: 'dist',
-        noExternal: ['lit', 'chart.js'], // Bundle dependencies
+        noExternal: ['lit', 'chart.js', 'chartjs-plugin-datalabels'], // Bundle dependencies
     }
 ]);
