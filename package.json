@@ -1,6 +1,6 @@
 {
   "name": "aeva-chart",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chart library for web and mobile using LitElement and Chart.js",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "npx serve .",
     "build": "tsup",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish --access public"
   },
   "keywords": [
     "chart",

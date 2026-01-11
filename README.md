@@ -1,12 +1,13 @@
 # Aeva Chart
 
-A versatile chart library for web and mobile using [Lit](https://lit.dev/) and [Chart.js](https://www.chartjs.org/).
+A versatile, declarative chart library for web and mobile using [Lit](https://lit.dev/) and [Chart.js](https://www.chartjs.org/).
 
 ## Features
-- **Lightweight**: Built with LitElement.
-- **Easy to use**: Simple declarative syntax.
-- **Customizable**: Supports custom backgrounds (solid, gradient, or transparent).
-- **TypeScript**: Written in TypeScript for type safety.
+- **Declarative Web Components**: Use HTML tags to configure your charts.
+- **Lightweight**: Built with LitElement for minimum overhead.
+- **Full Chart.js Power**: Access advanced Chart.js features via simple attributes.
+- **Gradient Support**: Built-in support for vertical, horizontal, and conic gradients.
+- **TypeScript**: First-class support for TypeScript.
 
 ## Installation
 
@@ -16,43 +17,60 @@ npm install aeva-chart
 
 ## Usage
 
-### Basic Usage
+### Basic Usage (HTML)
+
+Include the bundle and use the tags directly in your HTML:
 
 ```html
-<script type="module" src="path/to/dist/index.bundle.mjs"></script>
+<script type="module" src="node_modules/aeva-chart/dist/index.bundle.mjs"></script>
 
-<aeva-chart></aeva-chart>
-
-<script>
-  const chart = document.querySelector('aeva-chart');
-  chart.data = {
-    labels: ['A', 'B', 'C'],
-    datasets: [{
-      label: 'Data',
-      data: [10, 20, 30]
-    }]
-  };
-</script>
+<aeva-chart type="bar">
+  <chart-data labels="January, February, March">
+    <data-set label="Sales" data="65, 59, 80" background-color="rgba(75, 192, 192, 0.2)" border-color="rgb(75, 192, 192)" border-width="1"></data-set>
+  </chart-data>
+</aeva-chart>
 ```
 
-### Custom Backgrounds
+### Advanced Configuration
 
-You can customize the chart background using the `chart-background` attribute:
+You can fully customize the chart using nested components:
 
-**1. No Background (Default)**
+#### Theme and Plugins
+Use `<chart-theme>` to configure global settings and plugins like Legend, Tooltips, or DataLabels.
+
 ```html
-<aeva-chart></aeva-chart>
+<chart-theme 
+  maintain-aspect-ratio="false" 
+  legend-position="top"
+  datalabels-display="true"
+  datalabels-color="white"
+></chart-theme>
 ```
 
-**2. Solid Color**
+#### Axis Configuration
+Use `<chart-axis>` to customize X and Y axes.
+
 ```html
-<aeva-chart chart-background="orange"></aeva-chart>
+<chart-axis axis="y" grid-display="true" begin-at-zero="true" title-display="true" title-text="Amount"></chart-axis>
 ```
 
-**3. Gradient Background**
-Provide multiple colors separated by commas to create a vertical gradient.
+#### Gradients
+Use `<chart-gradient>` inside a `<data-set>` to apply beautiful gradients.
+
 ```html
-<aeva-chart chart-background="orange, white"></aeva-chart>
+<data-set label="Revenue" data="100, 200, 150">
+  <chart-gradient from="#ff8a00" to="#da1b60" orientation="vertical"></chart-gradient>
+</data-set>
+```
+
+#### Center Labels (Doughnut/Pie)
+```html
+<aeva-chart type="doughnut">
+  <chart-center-label text="75%" color="#333" font-size="24"></chart-center-label>
+  <chart-data labels="Used, Remaining">
+     <data-set data="75, 25"></data-set>
+  </chart-data>
+</aeva-chart>
 ```
 
 ## Development
@@ -61,12 +79,35 @@ Provide multiple colors separated by commas to create a vertical gradient.
    ```bash
    npm install
    ```
-3. Build:
+
+2. Run dev mode:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
    ```bash
    npm run build
    ```
 
-4. Run dev mode (watch):
+## Publishing to NPM
+
+If you are a contributor and want to publish the library:
+
+1. Build the library:
    ```bash
-   npm run dev
+   npm run build
    ```
+
+2. Login to your NPM account:
+   ```bash
+   npm login
+   ```
+
+3. Publish:
+   ```bash
+   npm run publish
+   ```
+
+## License
+ISC
