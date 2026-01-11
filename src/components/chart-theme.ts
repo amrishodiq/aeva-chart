@@ -33,6 +33,13 @@ export class ChartTheme extends LitElement {
 
                 const subName = attr.name.replace('legend-', '').replace(/-([a-z])/g, (g) => g[1].toUpperCase());
                 config.plugins.legend[subName] = val;
+            } else if (attr.name.startsWith('tooltip-')) {
+                // Handle tooltip prefix
+                if (!config.plugins) config.plugins = {};
+                if (!config.plugins.tooltip) config.plugins.tooltip = {};
+
+                const subName = attr.name.replace('tooltip-', '').replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+                config.plugins.tooltip[subName] = val;
             } else {
                 config[camelCaseName] = val;
             }

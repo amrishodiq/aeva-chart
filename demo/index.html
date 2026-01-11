@@ -14,111 +14,152 @@
 <body>
     <h1>Aeva Chart Demo</h1>
 
-    <h2>Example of Bar Chart</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <!-- Passing multiple colors comma separated -->
-        <aeva-chart type="bar" id="chart-gradient">
-            <chart-theme responsive="true" maintain-aspect-ratio="false" legend-position="bottom"
-                border-width="2"></chart-theme>
-            <chart-axis axis="x" grid-display="false" ticks-display="true"></chart-axis>
-            <chart-axis axis="y" grid-display="true" ticks-display="true"></chart-axis>
-            <chart-data labels="Red, Blue, Yellow, Green, Purple, Orange">
-                <data-set label="# of Votes" data="12, 19, 3, 5, 2, 3"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <h2>1. Bar Chart</h2>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart type="bar" id="chart-gradient">
+                <chart-theme responsive="true" maintain-aspect-ratio="false" legend-position="bottom"
+                    border-width="2"></chart-theme>
+                <chart-axis axis="x" grid-display="false" ticks-display="true"></chart-axis>
+                <chart-axis axis="y" grid-display="true" ticks-display="true"></chart-axis>
+                <chart-data labels="Red, Blue, Yellow, Green, Purple, Orange">
+                    <data-set label="# of Votes" data="12, 19, 3, 5, 2, 3"></data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
     </div>
 
     <h2>2. Line Chart (Curved)</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-line" type="line">
-            <chart-theme responsive="true" maintain-aspect-ratio="false" tension="0.4" fill="true"
-                border-color="rgb(75, 192, 192)" background-color="rgba(75, 192, 192, 0.2)"></chart-theme>
-            <chart-data labels="Jan, Feb, Mar, Apr, May, Jun">
-                <data-set label="Revenue" data="65, 59, 80, 81, 56, 55"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-line" type="line">
+                <chart-theme responsive="true" maintain-aspect-ratio="false" tension="0.4" fill="true"
+                    border-color="rgb(75, 192, 192)" background-color="rgba(75, 192, 192, 0.2)"></chart-theme>
+                <chart-data labels="Jan, Feb, Mar, Apr, May, Jun">
+                    <data-set label="Revenue" data="65, 59, 80, 81, 56, 55"></data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
     </div>
 
     <h2>3. Pie Chart</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-pie" type="pie">
-            <chart-theme responsive="true" maintain-aspect-ratio="false" legend-position="right"></chart-theme>
-            <chart-data labels="Red, Blue, Yellow">
-                <data-set data="300, 50, 100"
-                    background-color="rgb(255, 99, 132), rgb(54, 162, 235), rgb(255, 205, 86)"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-pie" type="pie">
+                <chart-theme responsive="true" maintain-aspect-ratio="false" legend-position="right"></chart-theme>
+                <chart-data labels="Red, Blue, Yellow">
+                    <data-set data="300, 50, 100"
+                        background-color="rgb(255, 99, 132), rgb(54, 162, 235), rgb(255, 205, 86)"></data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
     </div>
 
     <h2>4. Stacked Bar Chart</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-stacked" type="bar">
-            <chart-theme responsive="true" maintain-aspect-ratio="false"></chart-theme>
-            <chart-axis axis="x" stacked="true"></chart-axis>
-            <chart-axis axis="y" stacked="true"></chart-axis>
-            <chart-data labels="Jan, Feb, Mar">
-                <data-set label="Dataset 1" data="10, 20, 30" background-color="rgba(255, 99, 132, 0.5)"></data-set>
-                <data-set label="Dataset 2" data="15, 25, 35" background-color="rgba(54, 162, 235, 0.5)"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-stacked" type="bar">
+                <chart-theme responsive="true" maintain-aspect-ratio="false"></chart-theme>
+                <chart-axis axis="x" stacked="true"></chart-axis>
+                <chart-axis axis="y" stacked="true"></chart-axis>
+                <chart-data labels="Jan, Feb, Mar">
+                    <data-set label="Dataset 1" data="10, 20, 30" background-color="rgba(255, 99, 132, 0.5)"></data-set>
+                    <data-set label="Dataset 2" data="15, 25, 35" background-color="rgba(54, 162, 235, 0.5)"></data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
     </div>
 
     <h2>5. Rounded Bar Chart</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-rounded" type="bar">
-            <!-- border-radius="20" gives rounded top corners, "border-skipped"=false if you want all corners -->
-            <chart-theme responsive="true" maintain-aspect-ratio="false" border-skipped="false" border-radius="999"
-                background-color="rgba(153, 102, 255, 0.5)"></chart-theme>
-            <chart-axis axis="x" grid-display="false" border-display="false"></chart-axis>
-            <chart-axis axis="y" grid-display="false" ticks-display="false" border-display="false"></chart-axis>
-            <chart-data labels="A, B, C, D, E">
-                <data-set label="Rounded" data="12, 19, 3, 5, 8"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-rounded" type="bar">
+                <chart-theme responsive="true" maintain-aspect-ratio="false" border-skipped="false" border-radius="999"
+                    background-color="rgba(153, 102, 255, 0.5)"></chart-theme>
+                <chart-axis axis="x" grid-display="false" border-display="false"></chart-axis>
+                <chart-axis axis="y" grid-display="false" ticks-display="false" border-display="false"></chart-axis>
+                <chart-data labels="A, B, C, D, E">
+                    <data-set label="Rounded" data="12, 19, 3, 5, 8"></data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
     </div>
 
     <h2>6. Horizontal Bar Chart (No Grid)</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-horizontal" type="bar">
-            <!-- index-axis="y" swaps the axes effectively making it horizontal -->
-            <!-- datalabels attributes map to chartjs-plugin-datalabels config -->
-            <chart-theme responsive="true" maintain-aspect-ratio="false" index-axis="y" border-skipped="false"
-                border-radius="999" background-color="rgba(255, 159, 64, 0.5)" datalabels-display="true"
-                datalabels-anchor="end" datalabels-align="end" datalabels-color="black" layout-padding-right="50">
-            </chart-theme>
-            <chart-axis axis="x" display="false"></chart-axis>
-            <chart-axis axis="y" grid-display="false" border-display="false"></chart-axis>
-            <chart-data labels="Jan, Feb, Mar, Apr">
-                <data-set label="Sales" data="65, 59, 80, 81"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-horizontal" type="bar">
+                <chart-theme responsive="true" maintain-aspect-ratio="false" index-axis="y" border-skipped="false"
+                    border-radius="999" background-color="rgba(255, 159, 64, 0.5)" datalabels-display="true"
+                    datalabels-anchor="end" datalabels-align="end" datalabels-color="black" layout-padding-right="50">
+                </chart-theme>
+                <chart-axis axis="x" display="false"></chart-axis>
+                <chart-axis axis="y" grid-display="false" border-display="false"></chart-axis>
+                <chart-data labels="Jan, Feb, Mar, Apr">
+                    <data-set label="Sales" data="65, 59, 80, 81"></data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
+    </div>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-doughnut" type="doughnut">
+                <!-- borderRadius=999 works for doughnut segments too -->
+                <chart-theme responsive="true" maintain-aspect-ratio="false" cutout="80%" border-radius="999"
+                    border-skipped="false" legend-display="false"></chart-theme>
+                <chart-data labels="Progress, Remaining">
+                    <data-set data="75, 25" background-color="rgba(255, 99, 132, 1), #eeeeee">
+                        <!-- Gradasi untuk segment 1 (Progress) -->
+                        <chart-gradient from="rgba(255, 99, 132, 1)" to="rgba(153, 102, 255, 1)"
+                            orientation="conic"></chart-gradient>
+
+                        <!-- Gradasi untuk segment 2 (Remaining) - Opsional -->
+                        <chart-gradient from="rgba(54, 162, 235, 1)" to="rgba(75, 192, 192, 1)"
+                            orientation="conic"></chart-gradient>
+                    </data-set>
+                </chart-data>
+                <chart-center-label text="75%" font-size="40" font-color="rgba(255, 99, 132, 1)"
+                    font-style="bold"></chart-center-label>
+            </aeva-chart>
+        </basic-card>
     </div>
 
-    <h2>7. Doughnut Chart (Single Value)</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-doughnut" type="doughnut">
-            <!-- borderRadius=999 works for doughnut segments too -->
-            <chart-theme responsive="true" maintain-aspect-ratio="false" cutout="80%" border-radius="999"
-                border-skipped="false" legend-display="false"></chart-theme>
-            <chart-data labels="Progress, Remaining">
-                <!-- Using Pastel Red from palette and white -->
-                <data-set data="75, 25" background-color="rgba(255, 99, 132, 0.5), #ffffff"></data-set>
-            </chart-data>
-            <chart-center-label text="75%" font-size="40" font-color="rgba(255, 99, 132, 1)"
-                font-style="bold"></chart-center-label>
-        </aeva-chart>
+    <h2>8. Stacked Line Chart (Gradients)</h2>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-stacked-line" type="line">
+                <chart-theme responsive="true" maintain-aspect-ratio="false" fill="true" tension="0.3"></chart-theme>
+                <chart-axis axis="y" stacked="true" begin-at-zero="true"></chart-axis>
+                <chart-data labels="Jan, Feb, Mar, Apr, May">
+                    <data-set label="Layer 1" data="30, 20, 25, 30, 25">
+                        <chart-gradient from="rgba(54, 162, 235, 0.8)" to="rgba(54, 162, 235, 0)"></chart-gradient>
+                    </data-set>
+                    <data-set label="Layer 2" data="20, 15, 10, 20, 10">
+                        <chart-gradient from="rgba(75, 192, 192, 0.8)" to="rgba(75, 192, 192, 0)"></chart-gradient>
+                    </data-set>
+                </chart-data>
+            </aeva-chart>
+        </basic-card>
     </div>
 
-    <h2>8. Stacked Line Chart</h2>
-    <div style="height: 300px; width: 100%; margin-bottom: 50px;">
-        <aeva-chart id="chart-stacked-line" type="line">
-            <chart-theme responsive="true" maintain-aspect-ratio="false" fill="true" tension="0.4"></chart-theme>
-            <chart-axis axis="y" stacked="true" begin-at-zero="true"></chart-axis>
-            <chart-data labels="Jan, Feb, Mar, Apr, May">
-                <data-set label="Layer 1" data="30, 20, 25, 30, 25" background-color="rgba(54, 162, 235, 1)"></data-set>
-                <data-set label="Layer 2" data="20, 15, 10, 20, 10" background-color="rgba(75, 192, 192, 1)"></data-set>
-            </chart-data>
-        </aeva-chart>
+    <h2>9. Doughnut Chart (Selective Interaction)</h2>
+    <div style="height: auto; width: 100%; margin-bottom: 50px;">
+        <basic-card background="#ffffff">
+            <aeva-chart id="chart-null" type="doughnut">
+                <!-- tooltop-filter-index="0" ensures tooltips only appear for the first data point -->
+                <chart-theme responsive="true" maintain-aspect-ratio="false" cutout="70%" border-radius="10"
+                    legend-display="false" tooltip-filter-index="0"></chart-theme>
+                <chart-data labels="Active, Gap">
+                    <!-- hover-offset="10, 0" and border-width controls ensure no feedback for segment 2 -->
+                    <data-set data="90, 10" background-color="rgba(54, 162, 235, 1), transparent" hover-offset="10, 0"
+                        border-width="0, 0" hover-border-width="0, 0">
+                        <chart-gradient from="rgba(255, 99, 132, 1)" to="rgba(153, 102, 255, 1)"
+                            orientation="conic"></chart-gradient>
+                    </data-set>
+                </chart-data>
+                <chart-center-label text="90" font-size="50" font-color="rgba(54, 162, 235, 1)"></chart-center-label>
+            </aeva-chart>
+        </basic-card>
     </div>
 </body>
 

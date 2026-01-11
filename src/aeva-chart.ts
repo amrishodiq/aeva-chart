@@ -111,6 +111,15 @@ export class AevaChart extends LitElement {
                 }
             };
 
+            // Custom Tooltip Filter Index
+            if (themeConfig.plugins?.tooltip?.filterIndex !== undefined) {
+                const targetIndex = themeConfig.plugins.tooltip.filterIndex;
+                finalOptions.plugins.tooltip.filter = (tooltipItem: any) => {
+                    return tooltipItem.dataIndex === targetIndex;
+                };
+                delete finalOptions.plugins.tooltip.filterIndex;
+            }
+
             // Apply dataset defaults under options.datasets[type]
             if (Object.keys(datasetDefaults).length > 0) {
                 if (!finalOptions.datasets) finalOptions.datasets = {};
@@ -171,6 +180,77 @@ export class AevaChart extends LitElement {
                     ctx.fillStyle = labelConfig.color;
                     ctx.fillText(labelConfig.text, centerX, centerY);
                     ctx.restore();
+                }
+            });
+        }
+
+        // Gradient Support Integration
+        const dataSetsWithGradients = Array.from(this.querySelectorAll('data-set')).filter(ds => ds.querySelector('chart-gradient'));
+
+        if (dataSetsWithGradients.length > 0) {
+            plugins.push({
+                id: 'gradientBackground',
+                beforeUpdate: (chart: any) => {
+                    const { ctx, chartArea } = chart;
+                    if (!chartArea) return;
+
+                    dataSetsWithGradients.forEach((dsEl: any) => {
+                        // Find the corresponding dataset index in Chart.js
+                        const allDsEls = Array.from(this.querySelectorAll('data-set'));
+                        const dsIndex = allDsEls.indexOf(dsEl);
+                        if (dsIndex === -1 || !chart.data.datasets[dsIndex]) return;
+
+                        const dataset = chart.data.datasets[dsIndex];
+                        const gradEls = Array.from(dsEl.querySelectorAll('chart-gradient')) as any[];
+
+                        if (gradEls.length === 0) return;
+
+                        // Create an array of colors if we have multiple data points and multiple gradients
+                        // or even if we just want to apply one gradient specifically to one index.
+                        const dataCount = dataset.data.length;
+
+                        // We must ensure backgroundColor is an array if we want specific gradients per slice
+                        // For non-pie/doughnut, we usually just apply one gradient to the whole dataset.
+                        if (this.type === 'pie' || this.type === 'doughnut') {
+                            // If it's not already an array, make it one with original colors
+                            if (!Array.isArray(dataset.backgroundColor)) {
+                                dataset.backgroundColor = new Array(dataCount).fill(dataset.backgroundColor || '#ccc');
+                            }
+
+                            gradEls.forEach((gradEl, gradIndex) => {
+                                if (gradIndex < dataCount) {
+                                    const { from, to, orientation } = gradEl.config;
+                                    let gradient;
+                                    if (orientation === 'conic') {
+                                        const centerX = (chartArea.left + chartArea.right) / 2;
+                                        const centerY = (chartArea.top + chartArea.bottom) / 2;
+                                        // Start at the top (Chart.js default rotation is -0.5 * PI)
+                                        gradient = ctx.createConicGradient(-Math.PI / 2, centerX, centerY);
+                                    } else if (orientation === 'horizontal') {
+                                        gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+                                    } else {
+                                        gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                                    }
+                                    gradient.addColorStop(0, from);
+                                    gradient.addColorStop(1, to);
+                                    dataset.backgroundColor[gradIndex] = gradient;
+                                }
+                            });
+                        } else {
+                            // For bar/line, usually apply the first gradient found to the whole dataset
+                            const { from, to, orientation } = gradEls[0].config;
+                            let gradient;
+                            if (orientation === 'horizontal') {
+                                gradient = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+                            } else {
+                                gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                            }
+                            gradient.addColorStop(0, from);
+                            gradient.addColorStop(1, to);
+                            dataset.backgroundColor = gradient;
+                            dataset.borderColor = gradient;
+                        }
+                    });
                 }
             });
         }
